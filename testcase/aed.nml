@@ -1,0 +1,161 @@
+&aed_models
+   models = 'aed_noncohesive','aed_oxygen' ,'aed_carbon' ,'aed_silica','aed_nitrogen','aed_phosphorus' ,'aed_organic_matter' ,'aed_totals','aed_phytoplankton','aed_zooplankton'
+/
+&aed_noncohesive
+   w_ss = -0.03
+   d_ss = 2e-06
+   Ktau_0 = 0.001
+   epsilon = 0.01
+   tau_0 = 0.01
+   Ke_ss = 0.06
+   num_ss = 1
+   resuspension = 1
+   ss_initial = 1
+   tau_r = 1
+   settling = 3
+   rho_ss = 1500
+/
+&aed_oxygen
+   oxy_initial = 225
+   oxy_max = 500
+   theta_sed_oxy = 1.086364
+   Fsed_oxy = -33.30675
+   Ksed_oxy = 71.48389
+   oxy_min = 0
+/
+&aed_carbon
+   ionic = 0.3
+   atm_co2 = 4e-04
+   alk_mode = 2
+   co2_model = 1
+   co2_piston_model = 1
+   ch4_piston_model = 1
+   dic_initial = 200
+   ch4_initial = 1
+   pH_initial = 8.4
+   atm_ch4 = 1.76e-06
+   Kch4ox = 0.5
+   vTch4ox = 1.178287
+   Rch4ox = 0.1
+   theta_sed_dic = 1.140559
+   Ksed_dic = 6.8
+   Fsed_dic = 100
+   theta_sed_ch4 = 1.181587
+   Ksed_ch4 = 30
+   Fsed_ch4 = 10
+   methane_reactant_variable = 'OXY_oxy'
+/
+&aed_silica
+   Ksed_rsi = 150
+   theta_sed_rsi = 1.07
+   Fsed_rsi = 5
+   silica_reactant_variable = 'OXY_oxy'
+/
+&aed_nitrogen
+   theta_sed_amm = 1
+   Fsed_amm = 22
+   Ksed_amm = 30
+   Fsed_n2o = 0
+   Ksed_n2o = 30
+   theta_sed_nit = 1
+   Fsed_nit = -7
+   Ksed_nit = 30
+   Kpart_ammox = 20
+   kanammox = 0.001
+   Kin_deamm = 0.886
+   Kanmx_amm = 2
+   Kanmx_nit = 2
+   Rdenit = 0.01
+   theta_denit = 1
+   Kdenit = 150
+   Rdnra = 0.01
+   Kdnra_oxy = 2
+   amm_initial = 2.6
+   n2o_initial = 0.1
+   nit_initial = 0.1
+   simN2O = 2
+   Rn2o = 0.0015
+   Rnitrif = 0.08208537
+   Rnh4o2 = 1
+   Rno2o2 = 1
+   theta_nitrif = 1.086943
+   Knitrif = 15
+   atm_n2o = 3.2e-07
+   n2o_piston_model = 4
+   nitrif_reactant_variable = 'OXY_oxy'
+   denit_product_variable = ''
+/
+&aed_phosphorus
+   Qmax = 0.9025444
+   frp_initial = 0.06
+   Fsed_frp = 5.840839
+   theta_sed_frp = 1.103249
+   Ksed_frp = 97.18236
+   phosphorus_reactant_variable = 'OXY_oxy'
+   Fsed_frp_variable = ''
+   po4sorption_target_variable = ''
+/
+&aed_organic_matter
+   Rpon_hydrol = 0.001 !0.05
+   Rpoc_hydrol = 0.001 !0.07
+   Rpop_hydrol = 0.08
+   don_initial = 0.1
+   dopr_initial = 0.1
+   pop_initial = 0.1
+   Rdom_minerl = 0.013 !0.001
+   Ksed_dom = 93.12891
+   theta_sed_dom = 1.057064
+   simDenitrification = 1
+   theta_hydrol = 1.08
+   theta_minerl = 1.08
+   dop_initial = 1.5
+   doc_initial = 30
+   Kpom_hydrol = 60
+   poc_initial = 78.5
+   Kdom_minerl = 0.886
+   cpom_initial = 100
+   docr_initial = 120
+   don_miner_product_variable = 'NIT_amm'
+   dop_miner_product_variable = 'PHS_frp'
+   doc_miner_product_variable = 'CAR_dic'
+   dom_miner_oxy_reactant_var = 'OXY_oxy'
+   dom_miner_nit_reactant_var = 'NIT_nit'
+/
+&aed_totals
+   TN_vars = 'NIT_nit','NIT_amm','OGM_don','OGM_pon'
+   TP_vars = 'PHS_frp','OGM_dop','OGM_pop'
+   TOC_vars = 'OGM_doc','OGM_poc'
+   TN_varscale = 1, 1, 1, 1
+   TP_varscale = 1, 1, 1
+   TOC_varscale = 1, 1
+/
+&aed_phytoplankton
+   num_phytos = 2
+   the_phytos = 1, 2
+   p_excretion_target_variable = 'OGM_dop'
+   n_excretion_target_variable = 'OGM_don'
+   c_excretion_target_variable = 'OGM_doc'
+   si_excretion_target_variable = ''
+   p_mortality_target_variable = 'OGM_pop'
+   n_mortality_target_variable = 'OGM_pon'
+   c_mortality_target_variable = 'OGM_poc'
+   si_mortality_target_variable = ''
+   p1_uptake_target_variable = 'PHS_frp'
+   n1_uptake_target_variable = 'NIT_nit'
+   n2_uptake_target_variable = 'NIT_amm'
+   si_uptake_target_variable = 'SIL_rsi'
+   do_uptake_target_variable = 'OXY_oxy'
+   c_uptake_target_variable = 'CAR_dic'
+   dbase = 'aed_phyto_pars.nml'
+/
+&aed_zooplankton
+   num_zoops = 1
+   the_zoops = 1
+   dn_target_variable = 'OGM_don'
+   pn_target_variable = 'OGM_pon'
+   dp_target_variable = 'OGM_dop'
+   pp_target_variable = 'OGM_pop'
+   dc_target_variable = 'OGM_doc'
+   pc_target_variable = 'OGM_poc'
+   dbase = 'aed_zoop_pars.nml'
+/
